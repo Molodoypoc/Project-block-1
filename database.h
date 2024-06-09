@@ -1,15 +1,23 @@
 #pragma once
 #include <exception>
 #include <iostream>
+#include "exceptions.h"
+#include <vector>
 
-template <typename T>
-class Data
-{
-    private:
-    T* database;
+struct User {
+    std::string login;
+    std::string password;
+    std::string name;
+};
+
+class Data {
+private:
+    std::vector<User> database;
     int size;
+    int pointer = 0;
 
-    public:
-    Data(size_t lenght);
-    Create(size_t login, size_t password, size_t name);
+public:
+    Data();
+    void addUser(); // Добавление пользователя
+    bool loginUser();
 };
