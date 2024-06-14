@@ -6,8 +6,9 @@ Data::Data() {
     database.push_back(User{
         "admin",
         "admin",
-        "admin"
+        "Admin"
     });
+
 }
 
 void Data::addUser() {
@@ -27,7 +28,7 @@ void Data::addUser() {
         .password = password,
         .name = name,
     };
-
+    current_name = user.name;
     database.push_back(user);
     pointer++;
 }
@@ -40,23 +41,27 @@ bool Data::loginUser() {
     cout << "write your password" << endl;
     cin >> password;
 
-    for (User& user : database) {
+    for (auto user : database) {
         if (user.login == login && user.password == password){
+            current_name = user.name;
             return true;
-        }
-        else {
-            cout << "Failed log in, login or password error" << endl;
-            return false;
         }
     }
 
+    cout << "Failed log in, login or password error" << endl;
     return false;
 }
 
-// Baza -> User[] -+-> login
-//                 |
-//                 +-> password
-//                 |
-//                 +-> name
+void Data::identified(){
+    cout << current_name << endl;
+}
+
+void Data::users(){
+    for (auto user : database) {
+        if (user.name != current_name) {
+            cout << user.name << endl;
+        }
+    }
+}
 
 

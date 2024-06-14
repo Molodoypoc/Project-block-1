@@ -1,4 +1,5 @@
 #include "database.h"
+#include "chatfunctions.h"
 using namespace std;
 // 1. Спросить он хочет войти или зарегестрироваться
 // 2. Получить хотелку 
@@ -11,31 +12,31 @@ int main() {
 
     while (true) {
         bool authorised = false;
-        while (!authorised) {
-            cout << "choice option: 1 - registration, 2 - log in" << endl;
-            int choice;
-            cin >> choice;
-            switch (choice) {
-                case 1: {
-                    database.addUser(); // register
-                    authorised = true;
-                    break;
-                }
-                case 2: {
-                    authorised = database.loginUser(); // log in
-                    break;
-                }
+        cout << "Welcome to offline chat" << endl;
+        cout << "choice option: 1 - registration, 2 - log in" << endl;
+        int choice;
+        cin >> choice;
+        switch (choice) {
+            case 1: {
+                database.addUser(); // register
+                authorised = true;
+                break;
+            }
+            case 2: {
+                authorised = database.loginUser(); // log in
+                break;
             }
         }
 
-        std::cout << "Menu" << std::endl;
 
-        bool loggen_in = true;
-        while (loggen_in) {
-            std::cout << "1 - создать" << std::endl;
-            std::cout << "2 - открыть лс" << std::endl;
-            std::cout << "3 - открыть общий" << std::endl;
-            std::cout << "4 - выйти" << std::endl;
+        while (authorised) {
+            std::cout << "Menu" << std::endl;
+            std::cout << "1 - создать (не работает)" << std::endl;
+            std::cout << "2 - открыть лс (не работает)" << std::endl;
+            std::cout << "3 - открыть общий (не работает)" << std::endl;
+            std::cout << "4 - профиль(проверка на аккаунт)" << std::endl;
+            std::cout << "5 - узнать какие есть пользователи" << std::endl;
+            std::cout << "6 - выйти из аккаунта" << std::endl;
             int choice;
             cin >> choice;
             switch (choice) {
@@ -53,15 +54,21 @@ int main() {
                 }
                 case 4: {
                     cout << "Заглушка, дальше ничего нет =)" << endl;
+                    database.identified();
+                    break;
+                }
+                case 5: {
+                    cout << "Заглушка, дальше ничего нет =)" << endl;
+                    database.users();
+                    break;
+                }
+                case 6: {
+                    cout << "Выйти из аккаунта" << endl;
+                    authorised = false;
                     break;
                 }
             }
         }
     }
-
     return 0;
 }
-
-// git add .
-// git commit -a
-// <Текст который будет в коммите>

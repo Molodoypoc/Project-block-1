@@ -15,9 +15,12 @@ private:
     std::vector<User> database;
     int size;
     int pointer = 0;
+    std::string current_name = "0";
 
 public:
     Data();
     void addUser(); // Добавление пользователя
     bool loginUser();
+    void identified();
+    void users();
 };
