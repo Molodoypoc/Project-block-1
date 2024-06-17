@@ -16,7 +16,7 @@ int main() {
         cout << "choice option: 1 - registration, 2 - log in" << endl;
         int choice;
         cin >> choice;
-        switch (choice) {
+        switch (choice) { // выбор входа в аккаунт или регистрации аккаунта
             case 1: {
                 database.addUser(); // register
                 authorised = true;
@@ -29,7 +29,7 @@ int main() {
         }
 
 
-        while (authorised) {
+        while (authorised) { // выбор функции
             std::cout << "Menu" << std::endl;
             std::cout << "1 - создать (не работает)" << std::endl;
             std::cout << "2 - открыть лс (не работает)" << std::endl;
@@ -53,12 +53,12 @@ int main() {
                     break;
                 }
                 case 4: {
-                    cout << "Заглушка, дальше ничего нет =)" << endl;
+                    cout << "Информация об аккаунте(имя пользователя)" << endl;
                     database.identified();
                     break;
                 }
                 case 5: {
-                    cout << "Заглушка, дальше ничего нет =)" << endl;
+                    cout << "Зарегистрированные пользователи" << endl;
                     database.users();
                     break;
                 }

@@ -4,7 +4,7 @@
 #include "exceptions.h"
 #include <vector>
 
-struct User {
+struct User { // структура для введения аккаунта в базу(вектор)
     std::string login;
     std::string password;
     std::string name;
@@ -12,15 +12,14 @@ struct User {
 
 class Data {
 private:
-    std::vector<User> database;
-    int size;
-    int pointer = 0;
-    std::string current_name = "0";
+    std::vector<User> database; // база(вектор) в которой хранятся данные пользователей
+    int pointer = 1; // просто счётчик созданных аккаунтов(1 потому что есть тестовый ак.)
+    std::string current_name = "0"; // текущее имя
 
 public:
-    Data();
-    void addUser(); // Добавление пользователя
-    bool loginUser();
-    void identified();
-    void users();
+    Data(); // тестовый аккаунт
+    void addUser(); // Добавление аккаунта
+    bool loginUser(); // вход в уже существующий аккаунт
+    void identified(); // пишет имя аккаунта (в основном для тестов)
+    void users(); // пишет кто ещё существует в сети не считая аккаунт на котором ты сидишь
 };

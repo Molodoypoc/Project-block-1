@@ -28,7 +28,7 @@ void Data::addUser() {
         .password = password,
         .name = name,
     };
-    current_name = user.name;
+    current_name = user.name; // выставление имени пользователя
     database.push_back(user);
     pointer++;
 }
@@ -43,7 +43,7 @@ bool Data::loginUser() {
 
     for (auto user : database) {
         if (user.login == login && user.password == password){
-            current_name = user.name;
+            current_name = user.name; // выставление имени пользователя
             return true;
         }
     }
