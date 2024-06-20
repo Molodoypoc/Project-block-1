@@ -1,5 +1,4 @@
 #include "database.h"
-#include "chatfunctions.h"
 using namespace std;
 // 1. Спросить он хочет войти или зарегестрироваться
 // 2. Получить хотелку 
