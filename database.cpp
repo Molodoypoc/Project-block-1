@@ -1,5 +1,6 @@
 #include "database.h"
 #include <iostream>
+#include <limits>
 using namespace std;
 
 Data::Data() {
@@ -8,7 +9,7 @@ Data::Data() {
         "admin",
         "Admin"
     });
-
+    main_chat.users.push_back(&database[database.size() - 1]);
 }
 
 void Data::addUser() {
@@ -30,6 +31,7 @@ void Data::addUser() {
     };
     database.push_back(user);
     selected_user = &database[database.size() - 1];
+    main_chat.users.push_back(selected_user);
 }
 
 bool Data::loginUser() {
@@ -81,7 +83,7 @@ bool Data::create_chat() {
     User user;
     string selected_name;
     users();
-    cout << "Выберите пользователя с которым откроете чат" << endl;
+    cout << "Выберите и напишите пользователя с которым откроете чат" << endl;
     cin >> selected_name;
 
     for (User& user : database) {
@@ -107,15 +109,16 @@ bool Data::create_chat() {
 void Data::chatting() {
     selected_chat->display();
     while (true) {
-        Chat chat {};
         cout << "Выберите функцию: 1 - отправить сообщение. 2 - выйти из чата." << endl;
-        int choice;
+        int choice = 0;
         cin >> choice;
         switch (choice) {
             case 1: {
-                cout << "Напишите сообщение которое хотите отправить" << endl;
-                string message;
-                cin >> message;
+                cout << "Напишите сообщение которое хотите отправить без пробелов!!!" << endl;
+                std::string message;
+                std::cin.ignore();
+                getline(std::cin, message);
+
                 Chat::Message message_struct = { selected_user, message };
                 selected_chat->messages.push_back(message_struct);
                 break;
@@ -126,9 +129,7 @@ void Data::chatting() {
                 return;
             }
             default: {
-                cout << "Это не вариант" << endl;
-                string temp = "";
-                cin >> temp;
+                cout << "Это не вариант во избежание фатальной ошибки вас выкинуло из чата" << endl;
                 break;
             }
         }
@@ -147,7 +148,6 @@ void Data::User::display_chats() {
                 cout << user->name << ", ";
             }
         }
-
         cout << endl;
     }
 }
@@ -156,7 +156,7 @@ void Data::user_select_chat() {
 
     selected_user->display_chats();
 
-    cout << "Введите число:" << endl;
+    cout << "Введите число для выбора пользователя, с кем хотите открыть чат:" << endl;
     size_t selected = 0;
     cin >> selected;
     if (selected > chats.size()) {
@@ -166,5 +166,12 @@ void Data::user_select_chat() {
 
     selected_chat = &chats[selected - 1];
     cout << "Вы выбрали чат" << endl;
+    chatting();
+}
+
+void Data::select_main_chat() {
+    // должна выбирать главный чат как текущий
+    // вызывать функцию chatting();
+    selected_chat = &main_chat;
     chatting();
 }

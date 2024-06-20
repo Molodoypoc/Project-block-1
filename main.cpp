@@ -32,10 +32,11 @@ int main() {
             std::cout << "Menu" << std::endl;
             std::cout << "1 - создать чат" << std::endl;
             std::cout << "2 - открыть лс" << std::endl;
-            std::cout << "3 - открыть общий (не работает)" << std::endl;
+            std::cout << "3 - открыть общий" << std::endl;
             std::cout << "4 - профиль(проверка на аккаунт)" << std::endl;
             std::cout << "5 - узнать какие есть пользователи" << std::endl;
             std::cout << "6 - выйти из аккаунта" << std::endl;
+            std::cout << "7 - выйти из программы" << std::endl;
             int choice;
             cin >> choice;
             switch (choice) {
@@ -52,7 +53,7 @@ int main() {
                     break;
                 }
                 case 3: {
-                    cout << "Заглушка, дальше ничего нет =)" << endl;
+                    database.select_main_chat();
                     break;
                 }
                 case 4: {
@@ -70,6 +71,9 @@ int main() {
                     authorised = false;
                     database.logoutUser();
                     break;
+                }
+                case 7: {
+                    return 0;
                 }
             }
         }

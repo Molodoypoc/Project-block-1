@@ -15,7 +15,7 @@ public:
         std::string name = {};
         std::vector<Data::Chat*> chats = {};
 
-        void display_chats(); // вывод доступных чатов
+        void display_chats(); // вывод доступных личных чатов
     };
 
     struct Chat {
@@ -32,13 +32,12 @@ public:
         //     <текст>
     };
 
-
-
     Chat* selected_chat = nullptr; // чат который выбрал пользователь
-    User* selected_user = nullptr;
+    User* selected_user = nullptr; // пользователь которого выбрал
 
     std::vector<User> database; // база(вектор) в которой хранятся данные пользователей
-    std::vector<Chat> chats;
+    std::vector<Chat> chats; // вектор в котором хранятся все чаты
+    Chat main_chat;
 
     Data(); // тестовый аккаунт
     void addUser(); // Добавление аккаунта
@@ -48,6 +47,6 @@ public:
     void users(); // пишет кто ещё существует в сети не считая аккаунт на котором ты сидишь
     bool create_chat(); // текущий пользователь создает чат с другим пользователем
     void chatting(); //работа с текущим пользователем и выбранным чатом
-
-    void user_select_chat();
+    void select_main_chat();
+    void user_select_chat(); // выбор с кем открыть чат
 };
