@@ -3,7 +3,7 @@
 using namespace std;
 
 Data::Data() {
-    database.push_back(User{
+    database.push_back(User{ // тестовый аккаунт
         "admin",
         "admin",
         "Admin"
