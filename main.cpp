@@ -31,8 +31,8 @@ int main() {
 
         while (authorised) { // выбор функции
             std::cout << "Menu" << std::endl;
-            std::cout << "1 - создать (не работает)" << std::endl;
-            std::cout << "2 - открыть лс (не работает)" << std::endl;
+            std::cout << "1 - создать чат" << std::endl;
+            std::cout << "2 - открыть лс" << std::endl;
             std::cout << "3 - открыть общий (не работает)" << std::endl;
             std::cout << "4 - профиль(проверка на аккаунт)" << std::endl;
             std::cout << "5 - узнать какие есть пользователи" << std::endl;
@@ -41,11 +41,15 @@ int main() {
             cin >> choice;
             switch (choice) {
                 case 1: {
-                    cout << "Заглушка, дальше ничего нет =)" << endl;
+                    if (database.create_chat()) {
+                        database.chatting();
+                    } else {
+                        cout << "Ввели неправльное имя пользователя" << endl;
+                    }
                     break;
                 }
                 case 2: {
-                    cout << "Заглушка, дальше ничего нет =)" << endl;
+                    database.user_select_chat();
                     break;
                 }
                 case 3: {
@@ -65,6 +69,7 @@ int main() {
                 case 6: {
                     cout << "Выйти из аккаунта" << endl;
                     authorised = false;
+                    database.logoutUser();
                     break;
                 }
             }
